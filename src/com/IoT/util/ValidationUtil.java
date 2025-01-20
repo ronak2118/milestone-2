@@ -5,85 +5,47 @@ import java.util.regex.Pattern;
 public class ValidationUtil {
 
     // Regular expression patterns
-    private static final Pattern DevNAME_PATTERN = Pattern.compile("^[a-zA-Z\\s]+$");
-    private static final Pattern Dev_ID_PATTERN = Pattern.compile("^\\d{7}$");
-    private static final Pattern Type_PATTERN = Pattern.compile("^(sensor|microprocessor|electric)$");
-    private static final Pattern Amount_PATTERN = Pattern.compile("^\\d{1}$");
-    private static final Pattern Total_PATTERN = Pattern.compile("^\\d{1}$");
-    /**
-     * Validates if a string is null or empty.
-     *
-     * @param value the string to validate
-     * @return true if the string is null or empty, otherwise false
-     */
+    private static final Pattern DEV_NAME_PATTERN = Pattern.compile("^[a-zA-Z\\s]{1,40}$");
+    private static final Pattern DEV_ID_PATTERN = Pattern.compile("^[1-9]\\d{0,9}$"); // 1 to 10 digits, cannot start with 0
+    private static final Pattern SERIAL_NUMBER_PATTERN = Pattern.compile("^.{4,10}$"); // 4 to 20 characters
+    private static final Pattern TYPE_PATTERN = Pattern.compile("^(sensor|microprocessor|electric)$");
+    private static final Pattern AMOUNT_PATTERN = Pattern.compile("^\\d{1,20}$"); // 1 to 20 digits
+    private static final Pattern TOTAL_PATTERN = Pattern.compile("^\\d{1,20}$"); // 1 to 20 digits
+    private static final Pattern QUANTITY_PATTERN = Pattern.compile("^\\d{1,20}$"); // 1 to 20 digits
+
     public static boolean isNullOrEmpty(String value) {
         return value == null || value.trim().isEmpty();
     }
 
-    /**
-     * Validates if the name contains only alphabets and spaces.
-     *
-     * @param DevName the name to validate
-     * @return true if valid, otherwise false
-     */
-    public static boolean isValidDevName(String DevName) {
-        return !isNullOrEmpty(DevName) && DevNAME_PATTERN.matcher(DevName).matches();
+    public static boolean isValidDevName(String devName) {
+        return !isNullOrEmpty(devName) && DEV_NAME_PATTERN.matcher(devName).matches();
     }
 
-    /**
-     * Validates if the LMU ID is exactly 7 digits.
-     *
-     * @param DevId the LMU ID to validate
-     * @return true if valid, otherwise false
-     */
-    public static boolean isValidDevId(String DevId) {
-        return !isNullOrEmpty(DevId) && Dev_ID_PATTERN.matcher(DevId).matches();
+    public static boolean isValidDevId(String devId) {
+        return !isNullOrEmpty(devId) && DEV_ID_PATTERN.matcher(devId).matches();
     }
 
-    /**
-     * Validates if the program is one of the allowed options.
-     *
-     * @param Type the program to validate
-     * @return true if valid, otherwise false
-     */
-    public static boolean isValidType(String Type) {
-        return !isNullOrEmpty(Type) && Type_PATTERN.matcher(Type).matches();
+    public static boolean isValidSerialNumber(String serialNumber) {
+        return !isNullOrEmpty(serialNumber) && SERIAL_NUMBER_PATTERN.matcher(serialNumber).matches();
     }
 
-    /**
-     * Validates if the contact number starts with 98 and has 10 digits in total.
-     *
-     * @param Amount the contact number to validate
-     * @return true if valid, otherwise false
-     */
-    public static boolean isValidAmount(String Amount) {
-        return !isNullOrEmpty(Amount) && Amount_PATTERN.matcher(Amount.toLowerCase()).matches();
+    public static boolean isValidType(String type) {
+        return !isNullOrEmpty(type) && TYPE_PATTERN.matcher(type).matches();
     }
 
-    /**
-     * Validates if the age is between 18 and 70 (inclusive).
-     *
-     * @param Total the age to validate
-     * @return true if valid, otherwise false
-     */
-    public static boolean isValidTotal(String Total) {
-        return !isNullOrEmpty(Total) && Total_PATTERN.matcher(Total.toLowerCase()).matches();
+    public static boolean isValidAmount(String amount) {
+        return !isNullOrEmpty(amount) && AMOUNT_PATTERN.matcher(amount).matches();
     }
 
-    /**
-     * Generic field validation utility that checks for non-empty and specific criteria.
-     *
-     * @param value      the field value to validate
-     * @param isCriteria the specific criteria to validate against
-     * @return true if both non-empty and criteria validation pass, otherwise false
-     */
+    public static boolean isValidTotal(String total) {
+        return !isNullOrEmpty(total) && TOTAL_PATTERN.matcher(total).matches();
+    }
+
+    public static boolean isValidQuantity(String quantity) {
+        return !isNullOrEmpty(quantity) && QUANTITY_PATTERN.matcher(quantity).matches();
+    }
+
     public static boolean validateField(String value, boolean isCriteria) {
         return !isNullOrEmpty(value) && isCriteria;
     }
-
-    public static boolean isValidAge(short age) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    
 }

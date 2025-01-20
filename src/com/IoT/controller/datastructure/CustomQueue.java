@@ -1,10 +1,10 @@
 package com.IoT.controller.datastructure;
 
-import com.IoT.model.IoT;
+import com.IoT.model.DeviceModel;
 import java.util.LinkedList;
 
 /**
- * <b>Custom implementation of a queue data structure for managing StudentModel
+ * <b>Custom implementation of a queue data structure for managing DeviceModel
  * objects. This queue is implemented using a LinkedList and supports basic
  * operations like enqueue, dequeue, peek, and size checks</b>.
  *
@@ -19,11 +19,11 @@ import java.util.LinkedList;
  * Note: This implementation assumes that the queue operations are not accessed
  * concurrently.</p>
  *
- * @author Prithivi
+ * @author Rohan Chaurasiya
  */
 public class CustomQueue {
 
-    private LinkedList<IoT> vivaList; // Internal storage for the queue.
+    private LinkedList<DeviceModel> vivaList; // Internal storage for the queue.
     private int capacity; // Maximum number of elements the queue can hold.
 
     /**
@@ -47,7 +47,7 @@ public class CustomQueue {
      * empty.
      * @throws IllegalStateException if the queue is empty.
      */
-    public IoT deQueue() {
+    public DeviceModel deQueue() {
         try {
             return vivaList.removeFirst();
         } catch (Exception ex) {
@@ -63,7 +63,7 @@ public class CustomQueue {
      * @return the current size of the queue after the operation , or -1 if the
      * queue is full.
      */
-    public int enQueue(IoT studentModel) {
+    public int enQueue(DeviceModel studentModel) {
         if (isFull()) {
             throw new IllegalStateException("Cannot peek into an empty queue."); // Indicates the queue is full.
         }
@@ -87,7 +87,7 @@ public class CustomQueue {
      * empty.
      * @throws IllegalStateException if the queue is empty.
      */
-    public IoT peek() {
+    public DeviceModel peek() {
         try{
             return vivaList.getFirst();
         }catch (Exception ex) {

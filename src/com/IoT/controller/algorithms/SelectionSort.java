@@ -1,6 +1,6 @@
 package com.IoT.controller.algorithms;
 
-import com.IoT.model.IoT;
+import com.IoT.model.DeviceModel;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +9,7 @@ import java.util.List;
  * @author Prithivi
  */
 public class SelectionSort {
-    List<IoT> deviceSortList;
+    List<DeviceModel> deviceSortList;
 
     
     public SelectionSort(){
@@ -24,7 +24,7 @@ public class SelectionSort {
      * ascending)
      * @return the sorted list
      */
-    public List<IoT> sortByLmuId(List<IoT> deviceList, boolean isDesc) {
+    public List<DeviceModel> sortByDevID(List<DeviceModel> deviceList, boolean isDesc) {
         this.deviceSortList.clear();
         this.deviceSortList.addAll(deviceList);
         if (deviceSortList == null || deviceSortList.isEmpty()) {
@@ -45,13 +45,13 @@ public class SelectionSort {
      * Finds the index of the extremum value (minimum or maximum) in the list
      * from the start index.
      *
-     * @param studentSortList the list of StudentModel objects
+     * @param deviceSortList the list of StudentModel objects
      * @param startIndex the index to start searching from
      * @param isDesc specifies whether to find the maximum (true) or minimum
      * (false)
      * @return the index of the extremum value
      */
-    private int findExtremumIndex(List<IoT> deviceSortList, int startIndex, boolean isDesc) {
+    private int findExtremumIndex(List<DeviceModel> deviceSortList, int startIndex, boolean isDesc) {
         int extremumIndex = startIndex;
 
         for (int j = startIndex + 1; j < deviceSortList.size(); j++) {
@@ -81,13 +81,13 @@ public class SelectionSort {
     /**
      * Swaps two elements in the list.
      *
-     * @param studentSortList the list of StudentModel objects
+     * @param deviceSortList the list of StudentModel objects
      * @param i the index of the first element
      * @param j the index of the second element
      */
-    private void swap(List<IoT> studentSortList, int i, int j) {
-        IoT temp = studentSortList.get(i);
-        studentSortList.set(i, studentSortList.get(j));
-        studentSortList.set(j, temp);
+    private void swap(List<DeviceModel> deviceSortList, int i, int j) {
+        DeviceModel temp = deviceSortList.get(i);
+        deviceSortList.set(i, deviceSortList.get(j));
+        deviceSortList.set(j, temp);
     }
 }
